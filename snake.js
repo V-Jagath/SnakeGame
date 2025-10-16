@@ -31,7 +31,7 @@ let snake = [
 startGame();
 
 function startGame() {
-    context.fillStyle = "#67757b";
+    context.fillStyle = "#FAA533";
     context.fillRect(0, 0, width, height);
     createFood();
     displayFood();
@@ -76,7 +76,7 @@ function moveSnake() {
 }
 
 function clearBoard() {
-    context.fillStyle = "#ADC4CE";
+    context.fillStyle = "#F6FF99 ";
     context.fillRect(0, 0, width, height);
 }
 
