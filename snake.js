@@ -168,48 +168,6 @@ const downBtn = document.getElementById("ArrowDown");
 const leftBtn = document.getElementById("ArrowLeft");
 const rightBtn = document.getElementById("ArrowRight");
 
-// Start the game if not started (for first touch)
-function startIfNeeded() {
-    if (!started) {
-        started = true;
-        nextTick();
-        startBtn.style.display = "none";
-    }
-}
-
-// Touch button controls
-upBtn.addEventListener("touchstart", () => {
-    startIfNeeded();
-    if (yVel === 0) {
-        xVel = 0;
-        yVel = -unit;
-    }
-});
-
-downBtn.addEventListener("touchstart", () => {
-    startIfNeeded();
-    if (yVel === 0) {
-        xVel = 0;
-        yVel = unit;
-    }
-});
-
-leftBtn.addEventListener("touchstart", () => {
-    startIfNeeded();
-    if (xVel === 0) {
-        xVel = -unit;
-        yVel = 0;
-    }
-});
-
-rightBtn.addEventListener("touchstart", () => {
-    startIfNeeded();
-    if (xVel === 0) {
-        xVel = unit;
-        yVel = 0;
-    }
-});
-
 const startBotton = document.getElementById("startBtn");
 
 // Desktop click or Enter key starts the game
