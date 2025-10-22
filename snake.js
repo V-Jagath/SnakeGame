@@ -1,8 +1,8 @@
 const gameBoard = document.getElementById("gameBoard")
 const context = gameBoard.getContext("2d")
 const scorevalue = document.getElementById("scoreVal")
-// Food
 
+// Food
 const width = gameBoard.width;
 const height = gameBoard.height;
 
@@ -27,6 +27,10 @@ let snake = [
     { x: unit, y: 0 },
     { x: 0, y: 0 }
 ];
+
+const startBtn = document.getElementById("startBtn")
+
+startBtn.addEventListener("click", keyPress);
 
 startGame();
 
@@ -58,7 +62,6 @@ function drawSnake() {
         context.strokeRect(snakePart.x, snakePart.y, unit, unit)
     })
 }
-
 function moveSnake() {
     const head = {
         x: snake[0].x + xVel,
@@ -91,7 +94,7 @@ function nextTick() {
             drawSnake();
             gameOver();
             nextTick();
-        }, 100)
+        }, 150)
     }
     else {
         clearBoard();
@@ -106,7 +109,9 @@ function nextTick() {
     }
 }
 
+
 function keyPress(event) {
+    startBtn.style.display = "none";
     if (!started) {
         started = true;
         nextTick();
@@ -156,3 +161,52 @@ restart.addEventListener("click", restartGame);
 function restartGame() {
     window.location.reload(true)
 };
+
+// ✅ MOBILE TOUCH CONTROLS
+const upBtn = document.getElementById("ArrowUp");
+const downBtn = document.getElementById("ArrowDown");
+const leftBtn = document.getElementById("ArrowLeft");
+const rightBtn = document.getElementById("ArrowRight");
+
+// Start the game if not started (for first touch)
+function startIfNeeded() {
+    if (!started) {
+        started = true;
+        nextTick();
+        startBtn.style.display = "none";
+    }
+}
+
+// Touch button controls
+upBtn.addEventListener("touchstart", () => {
+    startIfNeeded();
+    if (yVel === 0) {
+        xVel = 0;
+        yVel = -unit;
+    }
+});
+
+downBtn.addEventListener("touchstart", () => {
+    startIfNeeded();
+    if (yVel === 0) {
+        xVel = 0;
+        yVel = unit;
+    }
+});
+
+leftBtn.addEventListener("touchstart", () => {
+    startIfNeeded();
+    if (xVel === 0) {
+        xVel = -unit;
+        yVel = 0;
+    }
+});
+
+rightBtn.addEventListener("touchstart", () => {
+    startIfNeeded();
+    if (xVel === 0) {
+        xVel = unit;
+        yVel = 0;
+    }
+});
+
