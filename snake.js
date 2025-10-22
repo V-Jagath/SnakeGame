@@ -210,3 +210,34 @@ rightBtn.addEventListener("touchstart", () => {
     }
 });
 
+const startBotton = document.getElementById("startBtn");
+
+// Desktop click or Enter key starts the game
+startBotton.addEventListener("click", startGameHandler);
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") startGameHandler();
+});
+
+function startGameHandler() {
+    startBotton.style.display = "none";
+    if (!started) {
+        started = true;
+        nextTick();
+    }
+}
+upBtn.addEventListener("touchstart", () => {
+    startGameHandler();
+    if (yVel === 0) { xVel = 0; yVel = -unit; }
+});
+downBtn.addEventListener("touchstart", () => {
+    startGameHandler();
+    if (yVel === 0) { xVel = 0; yVel = unit; }
+});
+leftBtn.addEventListener("touchstart", () => {
+    startGameHandler();
+    if (xVel === 0) { xVel = -unit; yVel = 0; }
+});
+rightBtn.addEventListener("touchstart", () => {
+    startGameHandler();
+    if (xVel === 0) { xVel = unit; yVel = 0; }
+});
