@@ -94,7 +94,7 @@ function nextTick() {
             drawSnake();
             gameOver();
             nextTick();
-        }, 150)
+        }, 250)
     }
     else {
         clearBoard();
